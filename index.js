@@ -1,33 +1,31 @@
-const fs = require('fs');
+const xlsx = require('xlsx')
 const path = require('path')
 const Pizzip = require('pizzip');
 const DocxTemplater = require('docxtemplater');
+const fs = require('fs');
 
-var data = fs.readFileSync(path.resolve(__dirname, 'invitados.csv')).toString();
-var datosArray = data.split("\r\n");
-console.log(datosArray);
+function generateDocs(file){
+    const libro = xlsx.readFile(file);
+    const hojasExcel = libro.SheetNames;
+    const hoja = hojasExcel[0];
+    const data = xlsx.utils.sheet_to_json(libro.Sheets[hoja]);
 
-for (let i = 0; i < datosArray.length; i++) {
-    
-
-    var campos = datosArray[i].split(",");
-
-    if(campos[0]){
+    for(let i=0; i<data.length;i++){
         var content = fs.readFileSync(path.resolve(__dirname, 'plantilla.docx'), 'binary');
         const zip = new Pizzip(content);
         const doc = new DocxTemplater(zip);
-        doc.setData({
-            id: campos[0],
-            nombre: campos[1],
-            puesto: campos[2],
-            cuarto: campos[3]
-        });
+
+        doc.setData(
+            data[i]
+        );
         try {
             doc.render();
         } catch (e) {
             throw e;
         }
         var buf = doc.getZip().generate({ type: 'nodebuffer' });
-        fs.writeFileSync(`Docs/${campos[1]}.docx`, buf);
-    }   
+        fs.writeFileSync(`Docs/${i+1}.docx`, buf);
+    }
 }
+
+generateDocs('datos.xlsx');

@@ -22,6 +22,7 @@
   "homepage": "https://github.com/CharsMtz/massive-document-editor#readme",
   "dependencies": {
     "docxtemplater": "^3.21.1",
-    "pizzip": "^3.0.6"
+    "pizzip": "^3.0.6",
+    "xlsx": "^0.17.0"
   }
 }
