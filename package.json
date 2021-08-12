@@ -1,28 +1,27 @@
 {
-  "name": "massive-document-editor",
-  "version": "0.1.0",
-  "description": "Desktop app to edit documents in bulk",
-  "main": "index.js",
-  "directories": {
-    "start": "node index.js",
-    "test": "test"
-  },
+  "name": "document-editor",
+  "version": "1.0.0",
+  "description": "Massive document editor",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CharsMtz/massive-document-editor.git"
-  },
-  "author": "Carlos Martínez",
+  "keywords": [
+    "Massive",
+    "Document",
+    "Automatic"
+  ],
+  "author": "Fernando Arevalo",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CharsMtz/massive-document-editor/issues"
-  },
-  "homepage": "https://github.com/CharsMtz/massive-document-editor#readme",
   "dependencies": {
-    "docxtemplater": "^3.21.1",
-    "pizzip": "^3.0.6",
+    "bootstrap": "^5.1.0",
+    "docxtemplater": "^3.22.5",
+    "electron": "^13.1.9",
+    "electron-reload": "^2.0.0-alpha.1",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "pizzip": "^3.1.1",
+    "read-excel-file": "^5.2.8",
     "xlsx": "^0.17.0"
   }
 }
