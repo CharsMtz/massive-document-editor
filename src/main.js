@@ -10,7 +10,7 @@ const desktopDir = `${homeDir}/Desktop/Documentos_Generados`;
 
 const { Notification } = require('electron')
 const NOTIFICATION_TITLE = 'Archivos generados'
-const NOTIFICATION_BODY = 'Creación de archivos exitosa. Loas archivos están dentro de la carpeta Documentos_Generados en el escritorio.'
+const NOTIFICATION_BODY = 'Creación de archivos exitosa. Los archivos están dentro de la carpeta "Documentos_Generados" en el escritorio.'
 
 function showNotification () {
   new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
@@ -30,7 +30,10 @@ function createWindow(){
         }
     });
     window.removeMenu();
-    window.setResizable(false);
+    window.center();
+    window.on('will-resize', (e) => {
+        e.preventDefault();
+    });
     window.loadFile('src/ui/index.html');
     window.webContents.on('did-finish-load', function() {
         window.show();
@@ -73,8 +76,6 @@ async function createDirectory(){
     fs.mkdir(desktopDir, { recursive: true }, function(err) {
         if (err) {
           console.log(err)
-        } else {
-          console.log("New directory successfully created.")
         }
       })
 }
