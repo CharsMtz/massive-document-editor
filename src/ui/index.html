@@ -8,8 +8,8 @@
     <title>Generador de documentos</title>
 </head>
 <body>
-    <div class="container-fluid my-3">
-        <h1 class="text-center">Generador de documentos masivos</h1>
+    <div class="container-fluid mb-2 py-2 upper-bar">
+        <h1 class="text-center">Generador de documentos</h1>
     </div>
     <form action="" method="POST" enctype="multipart/form-data" id="generateForm">
         <div class="container">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-12">
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control" id="fileDatos">
+                            <input type="file" class="form-control" id="fileDatos" accept=".xlsx" required>
                           </div>
                     </div>
                 </div>
@@ -30,37 +30,53 @@
                     </div>
                     <div class="col-12">
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control" id="filePlantilla">
+                            <input type="file" class="form-control" id="filePlantilla" accept=".docx,.pptx " required>
                           </div>
                     </div>
                 </div>
                 <div class="col-6">
-                    <button type="submit" class="btn btn-success w-100">Generar archivos</button>
+                    <button type="submit" class="btn btn-primary w-100" id="btnSubmit" >Generar archivos</button>
                 </div>
             </div>
         </div>
     </form>
 
-    <div class="accordion my-4" id="instrucciones">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                <h4>¿Cómo se usa?</h4> 
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <ol>
-                        <li>Crea tu tabla en Excel con la información acomodada por columnas. La cabecera de cada columna será el nombre que se sustituirá dentro de tu archivo plantilla.</li>
-                        <li>Crea tu archivo plantilla. Dentro de este archivo sustituye las partes que quieras cambiar por los datos de la tabla de Excel. Encierra dichas palabras con corchetes <b>{}</b>,
-                        por ejemplo {Nombre}.</li>
-                        <li>Selecciona los archivos en sus respectivas entradas.</li>
-                        <li>Clickea el boton "Generar" para crear todos los archivos.</li>     
-                    </ol>
-                </div>
+
+    <button type="button" class="btn btn-outline-primary btnInfo" data-bs-toggle="modal" data-bs-target="#documentationModal">
+        <b>?</b>
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade documentationModal" id="documentationModal" tabindex="-1" aria-labelledby="documentationModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Documentación</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+              <h6>Intrucciones de uso</h6>
+                <ol>
+                    <li>Crea una tabla en Excel con los datos que requieras. Coloca una cabecera a cada columna ya que esta actuará como un identificador.<br><i>Ejemplo:</i></li>
+                    <div class="imgInstructions">
+                        <img src="img/tablaExcel.PNG" alt="tablaExcel">
+                    </div>
+                    <li>Crea tu documento plantilla. Dentro de este, sustituye las partes que desees por los nombres de las cabeceras de tu tabla de Excel. Coloca las cabeceras dentro de corchetes <b>{}</b>.<br><i>Ejemplo:</i></li>
+                    <div class="imgInstructions">
+                        <img src="img/plantillaEjemplo.PNG" alt="plantillaEjemplo">
+                    </div>
+                    <li>Selecciona los documentos en sus espacios correspondientes indicados por la aplicación.</li>
+                    <li>Da click en el boton <b>"Generar documentos"</b>  para sustituir todos los datos de tu tabla de Excel por los identificadores indicados dentro de la plantilla.<br><i>Ejemplo:</i></li>
+                    <div class="imgInstructions">
+                        <img src="img/ejemploResultado.PNG" alt="ejemploResultado">
+                    </div>
+                </ol>
+                <p style="text-align: right; color: gray; font-size: 12px;">By Fernando David Arévalo De Loera</p>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+
     <script src="./app.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>

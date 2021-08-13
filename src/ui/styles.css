@@ -1,1 +1,30 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+
+:root{
+    --azul: rgb(0, 0, 109);
+}
+
+.btn-primary{
+    background-color: var(--azul);
+}
+
+.upper-bar{
+    background-color: var(--azul);
+    color:white;
+}
+
+.imgInstructions{
+    text-align: center;
+}
+
+
+.documentationModal{
+    text-align: justify;
+}
+
+.btnInfo{
+    position: absolute;
+    bottom: 4.5%;
+    right: 2.5%;
+    padding: 0px 10px !important;
+}

@@ -1,21 +1,19 @@
 const { remote } = require('electron')
+const path = require('path')
 const main = remote.require('./main.js')
-const fs = require('fs');
 
 const generateForm = document.getElementById('generateForm');
 const dataFileInput = document.getElementById('fileDatos');
 const templateFileInput = document.getElementById('filePlantilla');
 
-
-
-
-generateForm.addEventListener('submit', () =>{
+generateForm.addEventListener('submit', (e) =>{
     const dataFilePath = dataFileInput.files[0].path;
     const templateFilePath = templateFileInput.files[0].path;
-
-    var copyDocs = main.copyDocs(dataFilePath, templateFilePath).then(() => {
-        var createDirectory = main.createDirectory().then(() => {
-            main.generateDocs();
+    const templateFileExtension= path.extname(templateFilePath);
+    console.log(templateFileExtension);
+    main.createDirectory().then(() => {
+        main.generateDocs(dataFilePath, templateFilePath, templateFileExtension).then(()=>{
+            main.showNotification();
         })
-    })
+     })
 })
